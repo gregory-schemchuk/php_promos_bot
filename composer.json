@@ -1,0 +1,17 @@
+{
+  "name": "vendor_name/semester_exchangebot",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "ss",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "irazasyed/telegram-bot-sdk": "^2.0",
+    "ext-pdo": "*",
+    "ext-curl": "*"
+  }
+}
