@@ -28,10 +28,9 @@ $params = [];
 $params["offset"] = -1;
 
 // Init parsing
-/*
 $promos = parsePromos();
 storePromos($promos);
-*/
+
 
 // Bot code
 while (true) {
@@ -73,8 +72,11 @@ while (true) {
 // Parsing any Promos for Aliexpress site
 function parsePromos(): array {
     $promos = array();
+    print("Parsing Promokod.ru\n");
     $promosPromkod = parsePromkod();
+    print("Parsing Habr.com\n");
     $promosHabr = parseHabr();
+    print("Parsing 7days.ru\n");
     $promos7Days = parse7Days();
 
     foreach ($promosPromkod as $promo) {
@@ -128,7 +130,6 @@ function parsePromokodus(): array {
         $promoId = explode("/", $promoId);
         $promoId = $promoId[count($promoId) - 1];
         $promoHtml = file_get_html('https://promokodus.com/campaigns/aliexpress?couponId=' . $promoId);
-        print("Id test: " . $promoHtml . "\n");
         $promoCode = $promoHtml->find('.cm-code-wrap > input', 0)->value;
         print("Parsed promo: " . $promoCode . "\n");
         array_push($promos, $promoCode);
@@ -169,7 +170,7 @@ function parse7Days(): array {
         }
         $limit--;
         $promoCode = $promoElem->attr["data-code"];
-        print("Parsed test: " . $promoCode . "\n");
+        print("Parsed promo: " . $promoCode . "\n");
         array_push($promos, $promoCode);
     }
     return $promos;

@@ -39,7 +39,7 @@ class UriDB
     }
 
     public function Add(string $item):int {
-        $q = $this->pdo->prepare("INSERT INTO promo(code) VALUES(:code)");
+        $q = $this->pdo->prepare("INSERT INTO promo(code) VALUES(:code) ON CONFLICT DO NOTHING");
         $q->execute(["code"=>$item]);
         return $this->pdo->lastInsertId();
     }
